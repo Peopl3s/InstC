@@ -22,7 +22,7 @@ def Uol():
     try:
         with l:
             link = str(urllib.request.urlopen(cgi.escape(form['link'].value)).read())
-            ex=re.compile(r'(("display_url"|"video_url"): "https://(.*?).(jpg|mp4)")')
+            ex=re.compile(r'(("display_url"|"video_url"):"https://(.*?).(jpg|mp4)")')
             result=ex.finditer(link)
             photos=[]
             for ma in result:
@@ -36,11 +36,11 @@ def Uol():
             typecontent=""
             for newurl in list(photos):
                 if "video" in newurl:
-                    delsize=14
+                    delsize=13
                     typecontent="<div id=\"cont\" align=\"center\"><video controls=\"controls\"><source src=\"$URL$\"></video></div>"
 	
                 else:
-                    delsize=16
+                    delsize=15
                     typecontent="<div id=\"cont\" align=\"center\"><img src=\"$URL$\" alt=\"альтернативный текст\"> </div>"
                    
                 newurl=newurl[delsize:len(newurl)-1]
